@@ -1,0 +1,108 @@
+:root{
+    --text: aliceblue;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.current {
+    margin: 20px;
+    display: flex;
+}
+
+.weather-info{
+    padding: 10px;
+    color: var(--text);
+    font-size: 21px;
+    text-shadow: 0.5px 0.5px 6px rgba(0, 0, 0, 0.5);
+    font-family: 'Mukta', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-family: 'Russo One', sans-serif;
+}
+
+.city-name{
+    font-size: 35px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.thermal-sensation{
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+}
+
+.rain{
+    padding-top: 7px;
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+}
+
+.wind{
+    padding-top: 7px;
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+}
+
+#description-svg{
+    padding-right: 5px;
+    width: 25px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.temperature {
+    padding-top: 10px;
+    display: flex;
+    color: var(--text);
+    font-size: 30px;
+    text-shadow: 0.5px 0.5px 6px rgba(0, 0, 0, 0.5);
+    font-family: 'Mukta', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-family: 'Russo One', sans-serif;
+}
+
+.temperature p {
+    margin: 0; 
+    font-size: 18px; 
+    margin-right: 5px; 
+}
+
+.temperature p.value {
+    font-size: 40px; 
+    font-weight: 700;
+}
+
+.temperature p.scale {
+    font-size: 16px; 
+    position: relative;
+    top: -20px;
+    color: var(--text);
+    font-size: 21px;
+    text-shadow: 0.5px 0.5px 6px rgba(0, 0, 0, 0.5);
+    font-family: 'Mukta', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-family: 'Russo One', sans-serif;
+}
+
+  
+.svg-current {
+    margin-top: -100px;
+    margin-left: -50px;
+    margin-bottom: -100px;
+    width: 500px; 
+}
+
+
+#glass{
+    background-color: rgba(71, 71, 71, 0.1); 
+    backdrop-filter: blur(10px); 
+    border-radius: 10px; 
+    box-shadow: 7px 7px  6px rgba(5, 5, 5, 0.308); 
+}
+
