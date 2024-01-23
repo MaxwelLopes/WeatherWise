@@ -45,3 +45,17 @@
     height: 20px;
   }
   
+
+  @media (orientation: portrait) {
+    .search input{
+      flex: 1;
+      margin-right: 20px;
+    }
+
+    .search .button{
+      position: relative;
+      right: 20px;
+      border-radius: 10px;
+      z-index: 9999;
+    }
+}

@@ -17,9 +17,6 @@ function App() {
           <Forecast/>
           <Forecast/>
           <Forecast/>
-        </div>
-
-        <div className="forecast-day">
           <Forecast/>
           <Forecast/>
           <Forecast/>

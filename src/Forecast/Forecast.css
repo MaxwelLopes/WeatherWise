@@ -14,6 +14,7 @@
     flex-direction: column;
     align-items: center; 
     padding: 0px;
+    margin-bottom: 20px;
 }
 
 .forecast img{
@@ -25,4 +26,18 @@
 .forecast .temperature{
     padding: 10px;
     padding-top: 80px;
+}
+
+.svg-forecast{
+    margin-top: -100px;
+    margin-left: -50px;
+    margin-bottom: -100px;
+    width: 500px; 
+}
+
+@media (orientation: portrait) {
+    .forecast{
+        width: 150px;
+        height: 190px;
+    }
 }
