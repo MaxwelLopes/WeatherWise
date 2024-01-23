@@ -1,3 +1,7 @@
+:root{
+  --text: aliceblue;
+}
+
 .container{
   background-color: rgb(0, 255, 255);
   display: flex;
@@ -5,4 +9,11 @@
   border-radius: 5px;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.forecast-day{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
 }

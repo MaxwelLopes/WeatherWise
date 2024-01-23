@@ -3,6 +3,45 @@
     padding: 0px;
 }
 
-button{
-    background-color: red;
+.search {
+    display: flex;
+    align-items: center;
+    padding: 10px 0px 0px 20px;
+  }
+  
+.search input {
+    padding: 10px;
+    background-color: rgba(71, 71, 71, 0.1); 
+    backdrop-filter: blur(10px); 
+    border-radius: 10px; 
+    box-shadow: 7px 7px  6px rgba(5, 5, 5, 0.308); 
+    outline: none;
+    border: none;
+    color: var(--text);
 }
+
+.search input::placeholder {
+    color: var(--text); 
+}
+
+.search .button{
+    margin-left: -30px;
+    border-radius: 10px;
+    z-index: 9999;
+}
+  
+  .search button {
+    background: transparent;
+    color: var(--text); 
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+
+  .search button svg {
+    width: 20px;
+    height: 20px;
+  }
+  
