@@ -1,6 +1,6 @@
 import CurrentWeather from '../currentWeather/CurrentWeather'
 import Search from '../search/Search'
-import Forecast from '../Forecast/Forecast'
+import Forecast from '../Forecast/Forecast.jsx'
 import './App.css'
 
 function App() {
@@ -13,13 +13,6 @@ function App() {
         <CurrentWeather/>
 
         <div className="forecast-day">
-          <Forecast/>
-          <Forecast/>
-          <Forecast/>
-          <Forecast/>
-          <Forecast/>
-          <Forecast/>
-          <Forecast/>
           <Forecast/>
         </div>
 

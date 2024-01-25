@@ -1,43 +1,9 @@
-*{
-    margin: 0px;
-    padding: 0px;
-}
-
-.forecast{
-    background-color: rgba(71, 71, 71, 0.1); 
-    backdrop-filter: blur(10px); 
-    border-radius: 10px; 
-    box-shadow: 7px 7px  6px rgba(5, 5, 5, 0.308); 
-    width: 120px;
-    height: 170px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    padding: 0px;
-    margin-bottom: 20px;
-}
-
-.forecast img{
-    max-width: 130%;
-    padding-left: 50px;
-    padding-top: 65px;
-}
-
-.forecast .temperature{
-    padding: 10px;
-    padding-top: 80px;
-}
-
-.svg-forecast{
-    margin-top: -100px;
-    margin-left: -50px;
-    margin-bottom: -100px;
-    width: 500px; 
-}
-
-@media (orientation: portrait) {
-    .forecast{
-        width: 150px;
-        height: 190px;
-    }
+.forecast {
+  width: 100%;
+  overflow-x: auto;  
+  background-color: rgba(71, 71, 71, 0.1); 
+  backdrop-filter: blur(10px); 
+  border-radius: 10px; 
+  box-shadow: 7px 7px  7px rgba(5, 5, 5, 0.308);
+  
 }
