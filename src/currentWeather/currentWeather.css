@@ -24,7 +24,18 @@
     font-weight: 700;
     position: absolute;
     top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
+
+.city-name img {
+    width: 32px;
+    height: 24px; 
+    object-fit: contain; 
+    margin-left: 10px; 
+}
+
 
 .temperature .differential{
     display: flex;
@@ -102,7 +113,7 @@
 
   
 .svg-current {
-    margin-top: -100px;
+    margin-top: -30px;
     margin-left: 10px;
     margin-right: -50px;
     margin-bottom: -100px;
@@ -144,9 +155,12 @@
 
 
 @media (orientation: portrait) {
+    .info{
+        position: absolute;
+    }
     .svg-current {
         margin: -20px;
         margin-top: 0px;
-        margin-left: -50px; 
+        margin-left: 20px; 
     }
 }
