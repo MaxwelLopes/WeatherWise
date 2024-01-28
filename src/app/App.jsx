@@ -97,11 +97,12 @@ function App() {
   }
     
   const [weatherData, setWeatherData] = useState(null);
+  const [forecastData, setForecastData] = useState(null);
   const [condition, setCondition] = useState(null);
   useEffect(() => {
-    async function fetchData(url) {
+    async function fetchData(urlWeather, urlForecast) {
       try {
-        const response = await fetch(url);
+        const response = await fetch(urlWeather);
         if (!response.ok) {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }
@@ -113,12 +114,28 @@ function App() {
         console.error('Error fetching data:', error);
         return null;
       }
+      try {
+        const response = await fetch(urlForecast);
+        if (!response.ok) {
+          throw new Error(`HTTP Error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setForecastData(data);
+      } 
+      catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+      }
+
+
       
     }
     let KEY = import.meta.env.VITE_KEY;
-    let city = encodeURIComponent('porto alegre');
-    let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
-    fetchData(weatherUrl);
+    let city = encodeURIComponent('queimados');
+    let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
+    let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
+    fetchData(urlWeather, urlForecast);
+
   }, 
   []);
 
@@ -128,7 +145,7 @@ function App() {
         <Search/>
         <CurrentWeather weatherData={weatherData} condition={condition}/>
         <div className="forecast-day">
-          <Forecast/>
+          <Forecast forecastData={forecastData}/>
         </div>
       </div>    
     </>

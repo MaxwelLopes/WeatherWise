@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './Forecast.css';
 import Chart from 'chart.js/auto';
 
-function Forecast() {
+function Forecast(forecastData) {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -50,7 +50,14 @@ function Forecast() {
       }
     });
   }, []); 
-
+  if(!forecastData){
+    return <>
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                    Carregando...
+            </div>
+          </>
+  }
   return (
     <div className="forecast">
       <canvas id="temperatureChart"></canvas>
