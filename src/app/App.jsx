@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import CurrentWeather from '../currentWeather/CurrentWeather';
-import Search from '../search/Search';
+import CurrentWeather from '../currentWeather/CurrentWeather.jsx';
+import Search from '../search/Search.jsx';
 import Forecast from '../Forecast/Forecast.jsx';
 import './App.css';
 
