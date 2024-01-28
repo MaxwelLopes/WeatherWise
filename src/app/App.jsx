@@ -120,6 +120,21 @@ function App() {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }
         const data = await response.json();
+        let previsoes = [];
+
+        // Supondo que cada previsão é para um intervalo de 3 horas
+        for (let i = 0; i < 6; i++) {
+            let previsao = data.list[i];
+            let hora = previsao.dt_txt;
+            let temperatura = previsao.main.temp;
+
+            // Verifica se existe informação de chuva e extrai o volume
+            let volumeDeChuva = previsao.rain && previsao.rain['3h'] ? previsao.rain['3h'] : 0;
+
+            previsoes.push([hora, temperatura, volumeDeChuva]);
+        }
+
+        console.log(previsoes);
         setForecastData(data);
       } 
       catch (error) {
