@@ -3,7 +3,6 @@
 }
 
 .container {
-  background: linear-gradient(to bottom, #13b4ff, #ffffff);
   display: flex;
   width: 600px;
   border-radius: 5px;
