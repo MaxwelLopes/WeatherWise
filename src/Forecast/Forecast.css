@@ -5,7 +5,7 @@
   backdrop-filter: blur(10px); 
   border-radius: 10px; 
   box-shadow: 7px 7px  7px rgba(5, 5, 5, 0.308);
-  
+  overflow-x: auto;
 }
 
 /* Adicione isso no seu arquivo CSS */
