@@ -1,4 +1,4 @@
-import './CurrentWeather.css'
+import './currentWeather.css'
 
 function CurrentWeather({ weatherData, condition }){ 
     if (!weatherData) return <div class="loading-container">
