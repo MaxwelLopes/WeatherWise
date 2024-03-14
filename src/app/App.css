@@ -2,9 +2,15 @@
   --text: aliceblue;
 }
 
+.background{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   display: flex;
-  width: 600px;
+  width: 800px;
   border-radius: 5px;
   flex-direction: column;
   min-height: 100vh;

@@ -152,13 +152,15 @@ function App() {
   []);
   return (
     <>
-       <div className='container' style={{ background: getWeatherBackground(condition) }}>
-        <Search/>
-        <CurrentWeather weatherData={weatherData} condition={condition}/>
-        <div className="forecast-day">
-          <Forecast forecastData={forecastData}/>
-        </div>
-      </div>    
+      <div className="background" style={{ background: getWeatherBackground(condition) }}>
+          <div className='container'>
+              <Search/>
+              <CurrentWeather weatherData={weatherData} condition={condition}/>
+              <div className="forecast-day">
+                <Forecast forecastData={forecastData}/>
+              </div>
+          </div>
+      </div>   
     </>
   );
 }
