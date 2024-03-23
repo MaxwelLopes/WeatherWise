@@ -16,7 +16,7 @@ function App() {
   function getWeatherSvg(weatherData) {
     const isNight = !isDaytime(weatherData.dt, weatherData.sys.sunrise, weatherData.sys.sunset, weatherData.timezone);
     const condition = weatherData.weather[0].description;
-    console.log(condition)
+    console.log(condition);
 
     // Thunderstorm conditions
     if (['thunderstorm with rain', 'thunderstorm with heavy rain', 'light thunderstorm','thunderstorm', 'heavy thunderstorm', 'ragged thunderstorm','thunderstorm with light drizzle','thunderstorm with drizzle', 'thunderstorm with heavy drizzle'].includes(condition)) {
@@ -53,7 +53,7 @@ function App() {
 
     //clouds
 
-    if('few clouds' == condition){
+    if('few clouds' || 'mist' == condition){
       return isNight ? 'cloudy-night-1' : 'cloudy-day-1'
     }
     if('scattered clouds' == condition){
@@ -84,7 +84,7 @@ function App() {
         "day": "linear-gradient(to bottom, #56CCF2, #2F80ED)",
         "night": "linear-gradient(to bottom, #000000, #000529, #000000)", 
         "rainy-1": "linear-gradient(to bottom, #a9c0d3, #8fc4ec)", 
-        "rainy-2": "linear-gradient(to bottom, #9fbcd4, #4faff7)",
+        "rainy-2": "linear-gradient(to bottom, #9fbcd4, #0faff7)",
         "rainy-3": "linear-gradient(to bottom, #7ba4c5 , #229efb)",
         "rainy-4": "linear-gradient(to bottom, #295d87, #0082e3)",
         "snowy-1": "linear-gradient(to bottom, #ffffff, #dee0e1)",
@@ -92,17 +92,19 @@ function App() {
         "snowy-3": "linear-gradient(to bottom, #ececec, #dee0e1)",
         "Thunderstorm": "linear-gradient(to bottom, #141E30, #243B55)"
       }
-      
       return backgrounds[svgName] || 'linear-gradient(to bottom, #red, #black)';
   }
     
   const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
   const [condition, setCondition] = useState(null);
-  const [city, setCity] = useState(null)
   const [isLoading, setIsloading] = useState(false)
-  useEffect(() => {
-    async function fetchData(urlWeather, urlForecast) {
+  const [background, setBackground] = useState('linear-gradient(to bottom, #56CCF2, #2F80ED)')
+  
+    const fetchData = async (city) => {
+      let KEY = import.meta.env.VITE_KEY;
+      let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
+      let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
       setIsloading(true)
       try {
         const response = await fetch(urlWeather);
@@ -111,7 +113,10 @@ function App() {
         }
         const data = await response.json();
         setWeatherData(data);
-        setCondition(getWeatherSvg(data))
+        let svgName = getWeatherSvg(data);
+        console.log(svgName)
+        setCondition(svgName);
+        setBackground(getWeatherBackground(svgName));
         setIsloading(false)
       } 
       catch (error) {
@@ -124,19 +129,18 @@ function App() {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }
         const data = await response.json();
-        let previsoes = [];
+        let forecastData = [];
 
         for (let i = 0; i < 10; i++) {
-            let previsao = data.list[i];
-            let hora = previsao.dt_txt.substring(11, 16);;
-            let temperatura = previsao.main.temp;
+          let forecast = data.list[i];
+          let hour = forecast.dt_txt.substring(11, 16);;
+          let temperature = forecast.main.temp;
+          let rainVolume = forecast.rain && forecast.rain['3h'] ? forecast.rain['3h'] : 0;
 
-            let volumeDeChuva = previsao.rain && previsao.rain['3h'] ? previsao.rain['3h'] : 0;
+          forecastData.push([hour, temperature, rainVolume]);
+      }
 
-            previsoes.push([hora, temperatura, volumeDeChuva]);
-        }
-
-        setForecastData(previsoes);
+        setForecastData(forecastData);
       } 
       catch (error) {
         console.error('Error fetching data:', error);
@@ -144,17 +148,9 @@ function App() {
       }
       
     }
-    let KEY = import.meta.env.VITE_KEY;
-    //let city = encodeURIComponent(city);
-    let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
-    let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
-    //fetchData(urlWeather, urlForecast);
-
-  }, 
-  []);
   return (
     <>
-      <div className='main'style={{ background: 'linear-gradient(to bottom, #bdc3c7, #2c3e50)'}} id='glass' >
+      <div className='main'style={{ background: background }} id='glass' >
         {weatherData == null ? (
           isLoading ? (
             <div className="spinner-container">
@@ -163,7 +159,7 @@ function App() {
           ) : ( 
             <div className="home-container">
               <div className='home' id='glass'>
-                <Search/>
+                <Search  callFetchData = {fetchData}/>
                 <img src='weather.svg' alt="" className="svg-home"/>
               </div>
             </div>
@@ -171,7 +167,7 @@ function App() {
         ) : (
             <div className="weather-container">
               <div className="weather">
-                <Search/>
+                <Search callFetchData ={fetchData}/>
                 <CurrentWeather weatherData={weatherData} condition={condition}/>
                 <div className="forecast-day">
                   <Forecast forecastData ={forecastData}/> 
