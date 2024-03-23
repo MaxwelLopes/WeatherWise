@@ -99,8 +99,11 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
   const [condition, setCondition] = useState(null);
+  const [city, setCity] = useState(null)
+  const [isLoading, setIsloading] = useState(false)
   useEffect(() => {
     async function fetchData(urlWeather, urlForecast) {
+      setIsloading(true)
       try {
         const response = await fetch(urlWeather);
         if (!response.ok) {
@@ -109,6 +112,7 @@ function App() {
         const data = await response.json();
         setWeatherData(data);
         setCondition(getWeatherSvg(data))
+        setIsloading(false)
       } 
       catch (error) {
         console.error('Error fetching data:', error);
@@ -138,29 +142,44 @@ function App() {
         console.error('Error fetching data:', error);
         return null;
       }
-
-
       
     }
     let KEY = import.meta.env.VITE_KEY;
-    let city = encodeURIComponent('nilopolis');
+    //let city = encodeURIComponent(city);
     let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
     let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
-    fetchData(urlWeather, urlForecast);
+    //fetchData(urlWeather, urlForecast);
 
   }, 
   []);
   return (
     <>
-      <div className="background" style={{ background: getWeatherBackground(condition) }}>
-          <div className='container'>
-              <Search/>
-              <CurrentWeather weatherData={weatherData} condition={condition}/>
-              <div className="forecast-day">
-                <Forecast forecastData={forecastData}/>
+      <div className='main'style={{ background: 'linear-gradient(to bottom, #bdc3c7, #2c3e50)'}} id='glass' >
+        {weatherData == null ? (
+          isLoading ? (
+            <div className="spinner-container">
+              <div className="spinner"></div>
+            </div>
+          ) : ( 
+            <div className="home-container">
+              <div className='home' id='glass'>
+                <Search/>
+                <img src='weather.svg' alt="" className="svg-home"/>
               </div>
-          </div>
-      </div>   
+            </div>
+          )
+        ) : (
+            <div className="weather-container">
+              <div className="weather">
+                <Search/>
+                <CurrentWeather weatherData={weatherData} condition={condition}/>
+                <div className="forecast-day">
+                  <Forecast forecastData ={forecastData}/> 
+                </div>
+              </div>
+            </div>
+        )}
+      </div>
     </>
   );
 }
