@@ -21,6 +21,7 @@
   display: flex;
   width: 100vw;
   height: 100vh;
+  flex-direction: column;
 }
 
 .main h1{
@@ -49,25 +50,21 @@
   height: 410px;
 }
 
-.spinner-container{
+.spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: center;
+  height: 100vh; 
 }
 
 .spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  border: 4px solid rgba(0, 0, 0, 0.1);
   width: 36px;
   height: 36px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border-left-color: transparent;
   animation: spin 1s linear infinite;
-  justify-content: center;
+  margin: 0 auto; 
 }
 
 .weather-container{
@@ -128,6 +125,19 @@
   text-transform: uppercase;
   font-weight: bolder;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.attribution {
+  margin: 10px;
+  position: relative;
+  bottom: 10px; 
+  left: 0.01px; 
+  bottom: 0.01px; 
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-family: Arial, sans-serif;
+  color: var(--text);
 }
 
 @media (orientation: portrait) {
