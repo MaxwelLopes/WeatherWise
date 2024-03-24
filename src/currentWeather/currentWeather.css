@@ -4,8 +4,10 @@
 }
 
 .current {
-    margin: 20px;
+    margin: 10px;
     display: flex;
+    width: 600px;
+    
 }
 
 .weather-info{
@@ -113,10 +115,9 @@
 
   
 .svg-current {
-    margin-top: -30px;
+    margin-top: -50px;
     margin-left: 70px;
     margin-right: -30px;
-    margin-bottom: -100px;
     width: 400px; 
 }
 

@@ -83,10 +83,10 @@ function App() {
         "cloudy": "linear-gradient(to bottom, #bdc3c7, #2c3e50)",
         "day": "linear-gradient(to bottom, #56CCF2, #2F80ED)",
         "night": "linear-gradient(to bottom, #000000, #000529, #000000)", 
-        "rainy-1": "linear-gradient(to bottom, #a9c0d3, #8fc4ec)", 
-        "rainy-2": "linear-gradient(to bottom, #9fbcd4, #0faff7)",
-        "rainy-3": "linear-gradient(to bottom, #7ba4c5 , #229efb)",
-        "rainy-4": "linear-gradient(to bottom, #295d87, #0082e3)",
+        "rainy-1": "linear-gradient(to bottom, #92c2f4, #92c2f4, #E0E0E0)",
+        "rainy-2": "linear-gradient(to bottom, #82baf4, #b9b9b9)",
+        "rainy-3": "linear-gradient(to bottom, #4ea4fc, #8b9095)",
+        "rainy-4": "linear-gradient(to bottom, #007cfe, #6f7478)",
         "snowy-1": "linear-gradient(to bottom, #ffffff, #dee0e1)",
         "snowy-2": "linear-gradient(to bottom, #eff1f2, #dee0e1)",
         "snowy-3": "linear-gradient(to bottom, #ececec, #dee0e1)",
@@ -101,53 +101,52 @@ function App() {
   const [isLoading, setIsloading] = useState(false)
   const [background, setBackground] = useState('linear-gradient(to bottom, #56CCF2, #2F80ED)')
   
-    const fetchData = async (city) => {
-      let KEY = import.meta.env.VITE_KEY;
-      let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
-      let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
-      setIsloading(true)
-      try {
-        const response = await fetch(urlWeather);
-        if (!response.ok) {
-          throw new Error(`HTTP Error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setWeatherData(data);
-        let svgName = getWeatherSvg(data);
-        console.log(svgName)
-        setCondition(svgName);
-        setBackground(getWeatherBackground(svgName));
-        setIsloading(false)
-      } 
-      catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
+  const fetchData = async (city) => {
+    let KEY = import.meta.env.VITE_KEY;
+    let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
+    let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
+    setIsloading(true)
+    try {
+      const response = await fetch(urlWeather);
+      if (!response.ok) {
+        throw new Error(`HTTP Error! status: ${response.status}`);
       }
-      try {
-        const response = await fetch(urlForecast);
-        if (!response.ok) {
-          throw new Error(`HTTP Error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        let forecastData = [];
-
-        for (let i = 0; i < 10; i++) {
-          let forecast = data.list[i];
-          let hour = forecast.dt_txt.substring(11, 16);;
-          let temperature = forecast.main.temp;
-          let rainVolume = forecast.rain && forecast.rain['3h'] ? forecast.rain['3h'] : 0;
-
-          forecastData.push([hour, temperature, rainVolume]);
-      }
-
-        setForecastData(forecastData);
-      } 
-      catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
-      }
-      
+      const data = await response.json();
+      setWeatherData(data);
+      let svgName = getWeatherSvg(data);
+      setCondition(svgName);
+      setBackground(getWeatherBackground(svgName));
+      setIsloading(false)
+    } 
+    catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
     }
+    try {
+      const response = await fetch(urlForecast);
+      if (!response.ok) {
+        throw new Error(`HTTP Error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      let forecastData = [];
+
+      for (let i = 0; i < 10; i++) {
+        let forecast = data.list[i];
+        let hour = forecast.dt_txt.substring(11, 16);;
+        let temperature = forecast.main.temp;
+        let rainVolume = forecast.rain && forecast.rain['3h'] ? forecast.rain['3h'] : 0;
+
+        forecastData.push([hour, temperature, rainVolume]);
+    }
+
+      setForecastData(forecastData);
+    } 
+    catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+    
+  }
   return (
     <>
       <div className='main'style={{ background: background }} id='glass' >
@@ -167,11 +166,14 @@ function App() {
         ) : (
             <div className="weather-container">
               <div className="weather">
-                <Search callFetchData ={fetchData}/>
-                <CurrentWeather weatherData={weatherData} condition={condition}/>
-                <div className="forecast-day">
-                  <Forecast forecastData ={forecastData}/> 
+                <div className="search-container">
+                  <Search callFetchData ={fetchData}/>
                 </div>
+                <div className="container" id='glass'>
+                  <CurrentWeather weatherData={weatherData} condition={condition} forecastData={forecastData}/>
+                  <Forecast forecastData={forecastData}/>
+                </div>
+  
               </div>
             </div>
         )}

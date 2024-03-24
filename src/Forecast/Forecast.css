@@ -1,11 +1,5 @@
 .forecast {
-  width: 100%;
-  overflow-x: auto;  
-  background-color: rgba(71, 71, 71, 0.1); 
-  backdrop-filter: blur(10px); 
-  border-radius: 10px; 
-  box-shadow: 7px 7px  7px rgba(5, 5, 5, 0.308);
-  overflow-x: auto;
+  width: 600px;
 }
 
 /* Adicione isso no seu arquivo CSS */
