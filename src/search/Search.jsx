@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './search.css';
 
-function Search({ callFetchData }) {
+function Search({ callFetchData}) {
   const [city, setCity] = useState(''); // Estado para armazenar a cidade digitada pelo usuário
 
   const handleChange = (event) => {
@@ -13,7 +13,7 @@ function Search({ callFetchData }) {
     // Verifica se o input não está vazio antes de chamar handleFetchData
     if (city.trim() !== '') {
       callFetchData(city);
-    } 
+    }
   };
 
   const handleKeyDown = (event) => {

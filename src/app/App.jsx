@@ -100,6 +100,7 @@ function App() {
   const [condition, setCondition] = useState(null);
   const [isLoading, setIsloading] = useState(false)
   const [background, setBackground] = useState('linear-gradient(to bottom, #56CCF2, #2F80ED)')
+  const [message, setMessage] = useState('');
   
   const fetchData = async (city) => {
     let KEY = import.meta.env.VITE_KEY;
@@ -117,16 +118,17 @@ function App() {
       setCondition(svgName);
       setBackground(getWeatherBackground(svgName));
       setIsloading(false)
+      setMessage('')
     } 
     catch (error) {
       console.error('Error fetching data:', error);
+      setWeatherData(null)
+      setIsloading(false)
+      setMessage('Cidade não encontrada!')
       return null;
     }
-    try {
+    try{
       const response = await fetch(urlForecast);
-      if (!response.ok) {
-        throw new Error(`HTTP Error! status: ${response.status}`);
-      }
       const data = await response.json();
       let forecastData = [];
 
@@ -137,16 +139,18 @@ function App() {
         let rainVolume = forecast.rain && forecast.rain['3h'] ? forecast.rain['3h'] : 0;
 
         forecastData.push([hour, temperature, rainVolume]);
-    }
-
+      }
       setForecastData(forecastData);
-    } 
-    catch (error) {
-      console.error('Error fetching data:', error);
+      setMessage('')
+    }
+    catch(error){
+      setWeatherData(null)
+      setIsloading(false)
+      setMessage('ERRO!')
       return null;
     }
-    
-  }
+
+  }  
   return (
     <>
       <div className='main'style={{ background: background }} id='glass' >
@@ -159,6 +163,9 @@ function App() {
             <div className="home-container">
               <div className='home' id='glass'>
                 <Search  callFetchData = {fetchData}/>
+                <div className="message">
+                  <p>{message}</p>
+                </div>
                 <img src='weather.svg' alt="" className="svg-home"/>
               </div>
             </div>
@@ -166,7 +173,7 @@ function App() {
         ) : (
             <div className="weather-container">
               <div className="weather">
-                <div className="search-container">
+                <div className="search-container" id='current-search'>
                   <Search callFetchData ={fetchData}/>
                 </div>
                 <div className="container" id='glass'>

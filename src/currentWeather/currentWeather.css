@@ -7,7 +7,6 @@
     margin: 10px;
     display: flex;
     width: 600px;
-    overflow: hidden;
 }
 
 .weather-info{
@@ -18,7 +17,6 @@
     font-family: 'Mukta', sans-serif;
     font-family: 'Rubik', sans-serif;
     font-family: 'Russo One', sans-serif;   
-    overflow: hidden;
 }
 
 .city-name{
