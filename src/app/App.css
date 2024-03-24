@@ -71,14 +71,20 @@
 }
 
 .weather-container{
+  display: flex;
   width: 100vw;
   height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .weather{
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;  
+  overflow: hidden;
 }
 
 .search{
@@ -101,7 +107,7 @@
   align-items: center;
   flex-direction: column;
   margin: 10px 10px; 
-  z-index: 1;
+  overflow-x: hidden;
 }
 
 @media (orientation: portrait) {
@@ -113,5 +119,9 @@
   }
   .container{
     max-width: 95vw;
+    overflow-x: hidden;
+  }
+  input {
+    width: 90vw;
   }
 }

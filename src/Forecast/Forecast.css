@@ -20,3 +20,10 @@
   animation: spin 2s linear infinite;
   margin-right: 10px;
 }
+
+@media (orientation: portrait) {
+  .forecast {
+    position: relative;;
+    width: 100%;
+  }
+}

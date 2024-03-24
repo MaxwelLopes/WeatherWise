@@ -173,7 +173,6 @@ function App() {
                   <CurrentWeather weatherData={weatherData} condition={condition} forecastData={forecastData}/>
                   <Forecast forecastData={forecastData}/>
                 </div>
-  
               </div>
             </div>
         )}
