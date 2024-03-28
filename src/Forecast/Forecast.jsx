@@ -19,14 +19,6 @@ function Forecast({ forecastData }) {
         data: {
           labels: forecastData.map(previsao => previsao[0]),
           datasets: [{
-            label: 'Rain',
-            data: forecastData.map(previsao => previsao[2]),
-            backgroundColor: 'blue',
-            borderColor: 'blue',
-            borderWidth: 1,
-            yAxisID: 'y'
-          },
-          {
             label: 'Temperature',
             data: forecastData.map(previsao => previsao[1]),
             borderColor: 'red',
@@ -34,6 +26,14 @@ function Forecast({ forecastData }) {
             type: 'line',
             fill: false,
             yAxisID: 'y'
+          },
+          {
+            label: 'Rain',
+            data: forecastData.map(previsao => previsao[2]),
+            backgroundColor: 'blue',
+            borderColor: 'blue',
+            borderWidth: 1,
+            yAxisID: 'y1'
           }]
         },
         options: {
@@ -65,7 +65,23 @@ function Forecast({ forecastData }) {
           },
           plugins: {
             legend: {
-              display: true
+              display: true,
+              labels: {
+                usePointStyle: true,
+                boxWidth: 10,
+                boxHeight: 10,
+                generateLabels: function(chart) {
+                  const labels = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+                  labels.forEach(label => {
+                    if (label.datasetIndex === 0) { // Temperature
+                      label.fillStyle = 'rgba(0, 0, 0, 0)'; // Deixa o quadrado identificador da temperatura sem preenchimento
+                    } else if (label.datasetIndex === 1) { // Rain
+                      label.fillStyle = 'blue'; // Altera a cor de preenchimento do quadrado identificador para azul
+                    }
+                  });
+                  return labels;
+                }
+              }
             }
           }
         }
@@ -74,6 +90,7 @@ function Forecast({ forecastData }) {
       setChartInstance(newChartInstance);
     }
   }, [forecastData]);
+
 
   return (
     <div className="forecast">
