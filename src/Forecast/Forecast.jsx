@@ -19,17 +19,16 @@ function Forecast({ forecastData }) {
         data: {
           labels: forecastData.map(previsao => previsao[0]),
           datasets: [{
-            label: 'Temperature',
+            label: 'Temperatura (C°)',
             data: forecastData.map(previsao => previsao[1]),
             borderColor: 'red',
             borderWidth: 2,
             type: 'line',
             fill: false,
             yAxisID: 'y',
-            color: 'aliceblue'
           },
           {
-            label: 'Rain',
+            label: 'Chuva (mm)',
             data: forecastData.map(previsao => previsao[2]),
             backgroundColor: 'blue',
             borderColor: 'blue',
@@ -46,13 +45,11 @@ function Forecast({ forecastData }) {
               position: 'left',
               title: {
                 display: true,
-                text: 'Temperature',
+                text: 'Temperatura (C°)',
                 color: 'aliceblue',
-                textShadow: '0.5px 0.5px 6px rgba(0, 0, 0, 0.5)'
               },
               ticks: {
                 color: 'aliceblue',
-                textShadow: '0.5px 0.5px 6px rgba(0, 0, 0, 0.5)'
               }
             },
             y1: {
@@ -60,7 +57,7 @@ function Forecast({ forecastData }) {
               position: 'right',
               title: {
                 display: true,
-                text: 'Rain',
+                text: 'Chuva (mm)',
                 color: 'aliceblue',
                 textShadow: '0.5px 0.5px 6px rgba(0, 0, 0, 0.5)'
               },
