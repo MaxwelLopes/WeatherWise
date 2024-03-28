@@ -25,7 +25,8 @@ function Forecast({ forecastData }) {
             borderWidth: 2,
             type: 'line',
             fill: false,
-            yAxisID: 'y'
+            yAxisID: 'y',
+            color: 'aliceblue'
           },
           {
             label: 'Rain',
@@ -33,7 +34,9 @@ function Forecast({ forecastData }) {
             backgroundColor: 'blue',
             borderColor: 'blue',
             borderWidth: 1,
-            yAxisID: 'y1'
+            yAxisID: 'y1',
+            color: 'aliceblue',
+            textShadow: '0.5px 0.5px 6px rgba(0, 0, 0, 0.5)'
           }]
         },
         options: {
@@ -43,7 +46,13 @@ function Forecast({ forecastData }) {
               position: 'left',
               title: {
                 display: true,
-                text: 'Temperature'
+                text: 'Temperature',
+                color: 'aliceblue',
+                textShadow: '0.5px 0.5px 6px rgba(0, 0, 0, 0.5)'
+              },
+              ticks: {
+                color: 'aliceblue',
+                textShadow: '0.5px 0.5px 6px rgba(0, 0, 0, 0.5)'
               }
             },
             y1: {
@@ -51,7 +60,13 @@ function Forecast({ forecastData }) {
               position: 'right',
               title: {
                 display: true,
-                text: 'Rain'
+                text: 'Rain',
+                color: 'aliceblue',
+                textShadow: '0.5px 0.5px 6px rgba(0, 0, 0, 0.5)'
+              },
+              ticks: {
+                color: 'aliceblue',
+                textShadow: '0.5px 0.5px 6px rgba(0, 0, 0, 0.5)'
               },
               grid: {
                 drawOnChartArea: false
@@ -60,6 +75,10 @@ function Forecast({ forecastData }) {
             x: {
               grid: {
                 drawOnChartArea: false
+              },
+              ticks: {
+                color: 'aliceblue',
+                textShadow: '0.5px 0.5px 6px rgba(0, 0, 0, 0.5)'
               }
             }
           },
@@ -73,10 +92,10 @@ function Forecast({ forecastData }) {
                 generateLabels: function(chart) {
                   const labels = Chart.defaults.plugins.legend.labels.generateLabels(chart);
                   labels.forEach(label => {
-                    if (label.datasetIndex === 0) { // Temperature
-                      label.fillStyle = 'rgba(0, 0, 0, 0)'; // Deixa o quadrado identificador da temperatura sem preenchimento
-                    } else if (label.datasetIndex === 1) { // Rain
-                      label.fillStyle = 'blue'; // Altera a cor de preenchimento do quadrado identificador para azul
+                    if (label.datasetIndex === 0) { 
+                      label.fillStyle = 'red'; 
+                    } else if (label.datasetIndex === 1) { 
+                      label.fillStyle = 'blue'; 
                     }
                   });
                   return labels;

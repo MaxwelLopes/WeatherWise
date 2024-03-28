@@ -124,7 +124,7 @@ function App() {
       console.error('Error fetching data:', error);
       setWeatherData(null)
       setIsloading(false)
-      setMessage('Cidade não encontrada!')
+      window.location.reload(setMessage('Cidade não encontrada!'));
       return null;
     }
     try{
