@@ -19,6 +19,10 @@
   color: var(--text);
 }
 
+.search-container input::placeholder {
+  color: var(--text);
+}
+
 .search-container button{
   padding: 10px;
   background-color: transparent;
