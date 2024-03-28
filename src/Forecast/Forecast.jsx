@@ -19,7 +19,7 @@ function Forecast({ forecastData }) {
         data: {
           labels: forecastData.map(previsao => previsao[0]),
           datasets: [{
-            label: 'Temperatura (C°)',
+            label: 'Temperatura (°c)',
             data: forecastData.map(previsao => previsao[1]),
             borderColor: 'red',
             borderWidth: 2,
@@ -45,7 +45,7 @@ function Forecast({ forecastData }) {
               position: 'left',
               title: {
                 display: true,
-                text: 'Temperatura (C°)',
+                text: 'Temperatura (°C)',
                 color: 'aliceblue',
               },
               ticks: {
