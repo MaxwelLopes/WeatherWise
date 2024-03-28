@@ -191,7 +191,7 @@ function App() {
                 <Search callFetchData={fetchData} />
               </div>
               <div className="container" id='glass'>
-                <CurrentWeather weatherData={weatherData} condition={condition} forecastData={forecastData} />
+                <CurrentWeather weatherData={weatherData} condition={condition} />
                 <Forecast forecastData={forecastData} />
               </div>
             </div>
