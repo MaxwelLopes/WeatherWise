@@ -116,10 +116,17 @@ function App() {
     }
   }, []);
 
-  const fetchData = async (city) => {
+  const fetchData = async ({ city, latitude, longitude }) => {
     let KEY = import.meta.env.VITE_KEY;
-    let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
-    let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
+    let urlWeather, urlForecast;
+
+    if (city) {
+      urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
+      urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
+    } else if (latitude && longitude) {
+      urlWeather = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
+      urlForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
+    }
     setIsloading(true)
     try {
       const response = await fetch(urlWeather);
@@ -138,7 +145,7 @@ function App() {
       console.error('Error fetching data:', error);
       setWeatherData(null)
       setIsloading(false)
-      window.location.reload(setMessage('Cidade não encontrada!'));
+      //window.location.reload(setMessage('Cidade não encontrada!'));
       return null;
     }
     try {

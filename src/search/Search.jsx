@@ -31,8 +31,11 @@ function Search({ callFetchData }) {
     );
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
-      if (place.geometry) {
-        callFetchData(place.name);
+      if (place.geometry && place.geometry.location) {
+        const latitude = place.geometry.location.lat();
+        const longitude = place.geometry.location.lng();
+        console.log(latitude)
+        callFetchData({ latitude, longitude });
       }
     });
   };
