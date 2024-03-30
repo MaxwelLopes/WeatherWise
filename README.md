@@ -5,14 +5,13 @@ WeatherWise é um site que permite visualizar o clima atual e previsões para as
 
 <img src="readme/mesquita.png" width="200" height="237"/><img src="readme/riobranco.png"  width="200" height="237"/><img src="readme/rigolet.png"  width="200" height="237"/><img src="readme/toquio.png" width="200" height="237"/>
 
-
-
 ## Tecnologias Utilizadas
 
 - React
 - Vite (ferramenta de build)
 - API do OpenWeatherMap
 - API do Google Places Autocomplete
+- Chart.js (Biblioteca para renderizar os gráficos)
 
 ## Acesso ao Site
 
@@ -47,7 +46,15 @@ Para começar a usar o WeatherWise, siga estas etapas simples:
 Após a instalação, você pode iniciar o servidor de desenvolvimento com o seguinte comando:
 
 ```bash
-npm run dev
+npm run dev`
+```
+
+
+## Créditos de Atribuição
+
+Os ícones de clima utilizados neste projeto são fornecidos pela [amCharts](https://www.amcharts.com/free-animated-svg-weather-icons/) e estão licenciados sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Esses ícones fornecem representações visuais dos diferentes tipos de condições climáticas, adicionando uma camada adicional de informação ao nosso aplicativo WeatherWise.
+
+
 
 
 
