@@ -1,13 +1,11 @@
 # WeatherWise
+<img src=".\public\Thunderstorm.svg" width="600"/>
 
 WeatherWise é um site que permite visualizar o clima atual e previsões para as próximas horas. Ele utiliza a API do OpenWeatherMap para obter informações meteorológicas em tempo real e a API do Google para autocompletar locais.
 
-<img src="readme/mesquita.png" alt="drawing" width="100"/>
-<img src="readme/riobranco.png" alt="drawing" width="100"/>
-<img src="readme/rigolet.png" alt="drawing" width="100"/>
-<img src="readme/toquio.png" alt="drawing" width="100"/>
+<img src="readme/mesquita.png" width="300"/><img src="readme/riobranco.png"  width="300"/><img src="readme/rigolet.png"  width="300"/><img src="readme/toquio.png" width="300"/>
 
-![Thunderstorm](.\public\Thunderstorm.svg)
+
 
 ## Tecnologias Utilizadas
 
