@@ -9,7 +9,15 @@ function CurrentWeather({ weatherData, condition }) {
                 <div className="weather-info">
                     <div className="city-name">
                         <p id='name-city'>{weatherData.name}</p>
-                        <img src={`https://flagcdn.com/32x24/${weatherData.sys.country.toLowerCase()}.png`} alt="country" className='country' />
+                        {weatherData && weatherData.sys && weatherData.sys.country && (
+                            <img
+                                src={`https://flagcdn.com/32x24/${weatherData.sys.country.toLowerCase()}.png`}
+                                alt="country"
+                                className='country'
+                                onError={(e) => e.target.style.display = 'none'}
+                            />
+                        )}
+
                     </div>
                     <div className="info">
                         <div className="temperature">

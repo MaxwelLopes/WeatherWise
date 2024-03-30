@@ -5,24 +5,25 @@ function Search({ callFetchData }) {
   const [city, setCity] = useState('');
 
   useEffect(() => {
+    loadGooglePlacesScript();
+  }, [callFetchData]);
+
+  const loadGooglePlacesScript = () => {
     if (!window.google) {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_KEY_GOOGLE}&libraries=places`;
       script.async = true;
       document.head.appendChild(script);
 
-      script.onload = () => {
-        initializeAutocomplete();
-      };
+      script.onload = initializeAutocomplete;
 
-      // Cleanup function to prevent memory leaks
       return () => {
         document.head.removeChild(script);
       };
     } else {
       initializeAutocomplete();
     }
-  }, [callFetchData]);
+  };
 
   const initializeAutocomplete = () => {
     const autocomplete = new window.google.maps.places.Autocomplete(
@@ -34,7 +35,6 @@ function Search({ callFetchData }) {
       if (place.geometry && place.geometry.location) {
         const latitude = place.geometry.location.lat();
         const longitude = place.geometry.location.lng();
-        console.log(latitude)
         callFetchData({ latitude, longitude });
       }
     });
