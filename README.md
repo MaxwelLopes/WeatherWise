@@ -3,7 +3,7 @@ WeatherWise é um site que permite visualizar o clima atual e previsões para as
 
 <img src=".\public\Thunderstorm.svg" width="300"/>
 
-<img src="readme/mesquita.png" width="200"/><img src="readme/riobranco.png"  width="200"/><img src="readme/rigolet.png"  width="200"/><img src="readme/toquio.png" width="200"/>
+<img src="readme/mesquita.png" width="200" height="237"/><img src="readme/riobranco.png"  width="200" height="237"/><img src="readme/rigolet.png"  width="200" height="237"/><img src="readme/toquio.png" width="200" height="237"/>
 
 
 
