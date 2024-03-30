@@ -122,17 +122,17 @@ function App() {
 
     if (city) {
       urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
-      urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
+      urlForecast =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
     } else if (latitude && longitude) {
       urlWeather = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
       urlForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
     }
+    else{
+      return;
+    }
     setIsloading(true)
     try {
       const response = await fetch(urlWeather);
-      if (!response.ok) {
-        throw new Error(`HTTP Error! status: ${response.status}`);
-      }
       const data = await response.json();
       setWeatherData(data);
       let svgName = getWeatherSvg(data);
