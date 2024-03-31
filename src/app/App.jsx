@@ -16,7 +16,6 @@ function App() {
   function getWeatherSvg(weatherData) {
     const isNight = !isDaytime(weatherData.dt, weatherData.sys.sunrise, weatherData.sys.sunset, weatherData.timezone);
     const condition = weatherData.weather[0].description;
-    console.log(condition);
 
     // Thunderstorm conditions
     if (['thunderstorm with rain', 'thunderstorm with heavy rain', 'light thunderstorm', 'thunderstorm', 'heavy thunderstorm', 'ragged thunderstorm', 'thunderstorm with light drizzle', 'thunderstorm with drizzle', 'thunderstorm with heavy drizzle'].includes(condition)) {
@@ -117,42 +116,29 @@ function App() {
   }, []);
 
   const fetchData = async ({ city, latitude, longitude }) => {
-    let KEY = import.meta.env.VITE_KEY;
     let urlWeather, urlForecast;
 
     if (city) {
-      urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`;
-      urlForecast =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`;
+      urlWeather = `http://localhost:5000/api?type=weather&city=${city}`;
+      urlForecast = `http://localhost:5000/api?type=forecast&city=${city}`;
     } else if (latitude && longitude) {
-      urlWeather = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
-      urlForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${KEY}&units=metric`;
-    }
-    else{
-      return;
+      urlWeather = `http://localhost:5000/api?type=weather&lat=${latitude}&lon=${longitude}`;
+      urlForecast = `http://localhost:5000/api?type=forecast&lat=${latitude}&lon=${longitude}`;
     }
     setIsloading(true)
+
+    const response = await fetch(urlWeather);
     try {
-      const response = await fetch(urlWeather);
-      const data = await response.json();
+      let data = await response.json();
       setWeatherData(data);
       let svgName = getWeatherSvg(data);
       setCondition(svgName);
       setBackground(getWeatherBackground(svgName));
-      setIsloading(false)
       setMessage('')
-    }
-    catch (error) {
-      console.error('Error fetching data:', error);
-      setWeatherData(null)
-      setIsloading(false)
-      //window.location.reload(setMessage('Cidade não encontrada!'));
-      return null;
-    }
-    try {
-      const response = await fetch(urlForecast);
-      const data = await response.json();
+    
+      const responseForecast = await fetch(urlForecast);
+      data = await responseForecast.json();
       let forecastData = [];
-
       for (let i = 0; i < 10; i++) {
         let forecast = data.list[i];
         let hour = forecast.dt_txt.substring(11, 16);;
@@ -167,10 +153,8 @@ function App() {
     catch (error) {
       setWeatherData(null)
       setIsloading(false)
-      setMessage('ERRO!')
-      return null;
+      window.location.reload(setMessage('Cidade não encontrada!'));
     }
-
   }
   return (
     <>

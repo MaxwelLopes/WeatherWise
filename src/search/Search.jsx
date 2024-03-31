@@ -11,10 +11,9 @@ function Search({ callFetchData }) {
   const loadGooglePlacesScript = () => {
     if (!window.google) {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_KEY_GOOGLE}&libraries=places`;
+      script.src = `http://localhost:5000/search`;
       script.async = true;
       document.head.appendChild(script);
-
       script.onload = initializeAutocomplete;
 
       return () => {
@@ -46,7 +45,7 @@ function Search({ callFetchData }) {
 
   const handleClick = () => {
     if (city.trim() !== '') {
-      callFetchData(city);
+      callFetchData({city});
     }
   };
 
