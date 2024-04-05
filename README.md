@@ -21,24 +21,30 @@ Você pode acessar o WeatherWise clicando [aqui](https://maxwel-batalha-weatherw
 
 Para começar a usar o WeatherWise, siga estas etapas simples:
 
-1. Clone este repositório:
+1. Antes de tudo, certifique-se de ter o Node.js instalado em seu sistema.
+
+2. Clone este repositório:
 
     ```bash
     git clone https://github.com/MaxwelLopes/WeatherWise.git
     cd WeatherWise
     ```
 
-2. Instale as dependências do projeto:
+3. Instale as dependências do projeto:
 
     ```bash
     npm install
     ```
 
-3. Crie um arquivo `.env` na raiz do projeto e adicione suas chaves de API:
+4. Antes de prosseguir, você precisará de duas chaves de API pessoais:
+    - Uma chave do OpenWeatherMap, que você pode obter [aqui](https://openweathermap.org/api).
+    - Uma chave do Google, que você pode obter [aqui](https://cloud.google.com/apis?hl=pt-BR).
+
+5. Crie um arquivo `.env` no diretório API e adicione suas chaves de API:
 
     ```
-    VITE_KEY='SUA_KEY_DO_OPENWEATHERMAP'
-    VITE_KEY_GOOGLE='SUA_KEY_DO_GOOGLE'
+    KEY_WEATHER='SUA_KEY_DO_OPENWEATHERMAP'
+    KEY_GOOGLE='SUA_KEY_DO_GOOGLE'
     ```
 
 ## Como Usar
