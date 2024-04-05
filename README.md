@@ -49,11 +49,17 @@ Para começar a usar o WeatherWise, siga estas etapas simples:
 
 ## Como Usar
 
-Após a instalação, você pode iniciar o servidor de desenvolvimento com o seguinte comando:
+1. Após a instalação, abra um terminal separado e navegue até o diretório 'api' dentro do projeto e inicie o servidor:
 
-```bash
-npm run dev`
-```
+    ```bash
+    cd api
+    node app.js
+    ```
+2. Agora no diretório raiz inicie o projeto:
+
+    ```bash
+    npm run dev
+    ```
 
 
 ## Créditos de Atribuição
