@@ -40,22 +40,16 @@ Para começar a usar o WeatherWise, siga estas etapas simples:
     - Uma chave do OpenWeatherMap, que você pode obter [aqui](https://openweathermap.org/api).
     - Uma chave do Google, que você pode obter [aqui](https://cloud.google.com/apis?hl=pt-BR).
 
-5. Crie um arquivo `.env` no diretório API e adicione suas chaves de API:
+5. Crie um arquivo `.env` no diretório raiz e adicione suas chaves de API:
 
     ```
-    KEY_WEATHER='SUA_KEY_DO_OPENWEATHERMAP'
-    KEY_GOOGLE='SUA_KEY_DO_GOOGLE'
+    VITE_KEY_WEATHER='SUA_KEY_DO_OPENWEATHERMAP'
+    VITE_KEY_GOOGLE='SUA_KEY_DO_GOOGLE'
     ```
 
 ## Como Usar
 
-1. Após a instalação, abra um terminal separado e navegue até o diretório 'api' dentro do projeto e inicie o servidor:
-
-    ```bash
-    cd api
-    node app.js
-    ```
-2. Agora no diretório raiz inicie o projeto:
+1. Inicie o projeto com:
 
     ```bash
     npm run dev
